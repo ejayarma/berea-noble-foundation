@@ -37,3 +37,13 @@ export interface User {
 }
 
 export type BreadcrumbItemType = BreadcrumbItem;
+
+export interface BlogPost {
+  id: number
+  category: 'Education' | 'Community' | 'Medical Support' | 'Stories' | 'Events'
+  image: string
+  date: string
+  title: string
+  description: string
+  slug: string
+}
