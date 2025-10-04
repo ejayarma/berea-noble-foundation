@@ -36,7 +36,7 @@ const heroMap: Record<string, string> = {
         </div>
 
         <!-- Content -->
-        <div class="relative z-10 flex items-center justify-center min-h-svh px-10">
+        <div class="relative z-10 flex items-center justify-center min-h-svh lg:px-10">
             <div class="container-primary text-center">
 
                 <!-- Main Heading -->

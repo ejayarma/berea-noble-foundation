@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { Link } from '@inertiajs/vue3'
 import { BlogPost } from '@/types';
+import { Button } from '@/components/ui/button';
 
 interface Props {
     posts?: BlogPost[]
@@ -135,12 +136,12 @@ const formatDate = (date: string): string => {
 </script>
 
 <template>
-    <section class="py-12 px-10 bg-gray-50" aria-labelledby="blog-heading">
+    <section class="py-12 lg:px-10 bg-gray-50" aria-labelledby="blog-heading">
         <div class="container-primary">
             <!-- Category Filter -->
             <nav class="flex flex-wrap gap-3 mb-12" role="tablist" aria-label="Blog categories">
-                <button v-for="category in categories" :key="category" :class="[
-                    'px-6 py-3 rounded-full text-sm font-medium transition-all duration-200',
+                <Button v-for="category in categories" :key="category" :class="[
+                    'px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200',
                     'focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
                     activeCategory === category
                         ? 'bg-orange-500 text-white shadow-md'
@@ -148,7 +149,7 @@ const formatDate = (date: string): string => {
                 ]" :aria-selected="activeCategory === category" :aria-label="`Filter by ${category}`" role="tab"
                     @click="activeCategory = category">
                     {{ category }}
-                </button>
+                </Button>
             </nav>
 
             <!-- Blog Grid -->

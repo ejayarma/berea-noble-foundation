@@ -2,6 +2,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
+import { Button } from '@/components/ui/button';
 
 // Types
 interface Photo {
@@ -124,7 +125,7 @@ const handleImageError = (event: Event) => {
 // Keyboard navigation
 const handleKeydown = (event: KeyboardEvent) => {
   if (!lightboxVisible.value) return
-  
+
   switch (event.key) {
     case 'Escape':
       closeLightbox()
@@ -166,16 +167,16 @@ defineExpose({
 </script>
 
 <template>
-  <section class="py-16 bg-gray-50 px-10">
+  <section class="py-16 bg-gray-50 lg:px-10">
     <div class="container-primary">
       <!-- Filter Tabs -->
       <div class="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
-        <button
+        <Button
           v-for="category in categories"
           :key="category.key"
           @click="activeCategory = category.key"
           :class="[
-            'px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
+            'px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
             activeCategory === category.key
               ? 'bg-orange-500 text-white shadow-lg'
               : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
@@ -184,11 +185,11 @@ defineExpose({
           :aria-label="`Filter by ${category.label}`"
         >
           {{ category.label }}
-        </button>
+        </Button>
       </div>
 
       <!-- Gallery Grid -->
-      <div 
+      <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         role="region"
         aria-label="Photo gallery"
@@ -213,9 +214,9 @@ defineExpose({
               class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               @error="handleImageError"
             />
-            
+
             <!-- Overlay -->
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end">
+            <div class="absolute inset-0 bg-black/30 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end">
               <div class="p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="text-lg font-semibold leading-tight drop-shadow-lg">
                   {{ photo.title }}
@@ -230,8 +231,8 @@ defineExpose({
       </div>
 
       <!-- Empty State -->
-      <div 
-        v-if="filteredPhotos.length === 0" 
+      <div
+        v-if="filteredPhotos.length === 0"
         class="text-center py-16"
         role="status"
         aria-live="polite"
@@ -241,14 +242,14 @@ defineExpose({
       </div>
 
       <!-- Loading State -->
-      <div 
-        v-if="isLoading" 
+      <div
+        v-if="isLoading"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         role="status"
         aria-label="Loading photos"
       >
-        <div 
-          v-for="n in 6" 
+        <div
+          v-for="n in 6"
           :key="n"
           class="aspect-[4/3] bg-gray-200 rounded-2xl animate-pulse"
         ></div>
@@ -271,7 +272,7 @@ defineExpose({
       <template #toolbar="{ toolbarMethods }">
         <div class="vel-toolbar">
           <div class="vel-btn-group">
-            <button 
+            <button
               @click="toolbarMethods.zoomIn"
               class="vel-btn"
               aria-label="Zoom in"
@@ -281,7 +282,7 @@ defineExpose({
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
               </svg>
             </button>
-            <button 
+            <button
               @click="toolbarMethods.zoomOut"
               class="vel-btn"
               aria-label="Zoom out"
@@ -291,7 +292,7 @@ defineExpose({
                 <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
               </svg>
             </button>
-            <button 
+            <button
               @click="toolbarMethods.rotateLeft"
               class="vel-btn"
               aria-label="Rotate left"
@@ -302,7 +303,7 @@ defineExpose({
               </svg>
             </button>
           </div>
-          <button 
+          <button
             @click="closeLightbox"
             class="vel-btn vel-close-btn ml-4"
             aria-label="Close gallery"
@@ -424,15 +425,15 @@ defineExpose({
     margin: 0.5rem;
     padding: 0.75rem;
   }
-  
+
   .vel-prev-btn {
     left: 1rem;
   }
-  
+
   .vel-next-btn {
     right: 1rem;
   }
-  
+
   .vel-prev-btn,
   .vel-next-btn {
     width: 2.5rem;

@@ -28,7 +28,7 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   form.email = email.value
-  
+
   form.post('/newsletter/subscribe', {
     preserveScroll: true,
     onSuccess: () => {
@@ -55,13 +55,13 @@ const handleInput = () => {
 </script>
 
 <template>
-  <section 
-    class="py-16 px-10 bg-gray-50"
+  <section
+    class="py-16 lg:px-10 bg-gray-50"
     aria-labelledby="newsletter-heading"
   >
     <div class="container-primary text-center">
       <!-- Heading -->
-      <h2 
+      <h2
         id="newsletter-heading"
         class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
       >
@@ -74,7 +74,7 @@ const handleInput = () => {
       </p>
 
       <!-- Newsletter Form -->
-      <form 
+      <form
         @submit.prevent="handleSubmit"
         class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto"
         novalidate
@@ -103,24 +103,24 @@ const handleInput = () => {
         >
           <span v-if="!isSubmitting">Subscribe Now</span>
           <span v-else class="flex items-center gap-2">
-            <svg 
-              class="animate-spin h-5 w-5" 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
+            <svg
+              class="animate-spin h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <circle 
-                class="opacity-25" 
-                cx="12" 
-                cy="12" 
-                r="10" 
-                stroke="currentColor" 
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
                 stroke-width="4"
               />
-              <path 
-                class="opacity-75" 
-                fill="currentColor" 
+              <path
+                class="opacity-75"
+                fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               />
             </svg>
@@ -146,16 +146,16 @@ const handleInput = () => {
         class="mt-3 text-sm text-green-600 flex items-center justify-center gap-2"
         aria-live="polite"
       >
-        <svg 
-          class="w-5 h-5" 
-          fill="currentColor" 
+        <svg
+          class="w-5 h-5"
+          fill="currentColor"
           viewBox="0 0 20 20"
           aria-hidden="true"
         >
-          <path 
-            fill-rule="evenodd" 
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-            clip-rule="evenodd" 
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+            clip-rule="evenodd"
           />
         </svg>
         {{ successMessage }}

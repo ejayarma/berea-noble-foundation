@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import ImpactSection from './Partials/ImpactSection.vue';
@@ -9,23 +10,23 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
 <template>
     <WebsiteLayout class="min-h-svh">
-        
+        <Head title="Programs" />
         <HeroSection
                 image-url="@images/programs-hero.jpeg"
                 title="Our Programs"
                 :subtitle="'Creating impact through education, care \nand community empowerment.'"
         />
-        <section class="programs-section bg-gray-50 py-16 lg:py-24 px-10">
+        <section class="programs-section bg-gray-50 py-16 lg:py-24 lg:px-10">
             <div class="container-primary">
                 <!-- Header -->
                 <div class="text-center mb-16">
-                    <p class="text-lg lg:text-xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+                    <p class="text-prose">
                         At Berea Noble Foundation, our programs are designed to bridge knowledge gaps, uplift
                         communities, and provide essential support for the underserved.
                     </p>
 
                     <!-- Decorative Line -->
-                    <div class="w-32 h-1 bg-brand mx-auto mt-8"></div>
+                    <div class="w-full h-0.5 bg-brand mx-auto mt-8"></div>
                 </div>
 
                 <!-- Programs Grid -->
@@ -63,10 +64,10 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                 </div>
 
                                 <!-- CTA Button -->
-                                <button
+                                <!-- <button
                                     class="w-full py-3 px-6 border-2 border-brand text-brand font-medium rounded-lg hover:bg-brand hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
                                     Learn More
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -104,10 +105,10 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                 </div>
 
                                 <!-- CTA Button -->
-                                <button
+                                <!-- <button
                                     class="w-full py-3 px-6 border-2 border-brand text-brand font-medium rounded-lg hover:bg-brand hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
                                     Learn More
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -145,10 +146,10 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                 </div>
 
                                 <!-- CTA Button -->
-                                <button
+                                <!-- <button
                                     class="w-full py-3 px-6 border-2 border-brand text-brand font-medium rounded-lg hover:bg-brand hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
                                     Learn More
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -186,28 +187,22 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                 </div>
 
                                 <!-- CTA Button -->
-                                <button
+                                <!-- <button
                                     class="w-full py-3 px-6 border-2 border-brand text-brand font-medium rounded-lg hover:bg-brand hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
                                     Learn More
-                                </button>
+                                </button> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- View All Posts Button -->
-                <div class="text-center mt-10">
-                    <button
-                        class="inline-flex items-center justify-center px-8 py-4 border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
-                        View All Posts
-                    </button>
-                </div>
+
             </div>
         </section>
 
 
         <ImpactSection variant="dark" :show-header="false" />
 
-        <section class="py-16 lg:py-24 px-10">
+        <section class="py-16 lg:py-24 lg:px-10">
             <div class="container-primary text-center">
                 <blockquote class="italic text-lg lg:text-2xl text-gray-700">
                     <p>“Reading has opened doors for our children that were once closed.”</p>

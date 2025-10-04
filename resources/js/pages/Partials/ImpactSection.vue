@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{
   showHeader?: boolean
   class?: HTMLAttributes['class']
 }>(), {
-  variant: 'light',    
+  variant: 'light',
   showHeader: true
 })
 
@@ -45,7 +45,7 @@ document.querySelectorAll('.impact-stat').forEach(el => {
 </script>
 <template>
     <!-- Our Impact Section -->
-    <section :class="cn(variantBgClass[props.variant],'py-16 lg:py-24 px-10', props.class)">
+    <section :class="cn(variantBgClass[props.variant],'py-16 lg:py-24 lg:px-10', props.class)">
         <div class="container-primary">
 
             <!-- Header -->
@@ -53,7 +53,7 @@ document.querySelectorAll('.impact-stat').forEach(el => {
                 <h2 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 lg:mb-8">
                     {{ props.title ?? 'Our Impact' }}
                 </h2>
-                <p class="text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                <p class="text-prose-alt">
                     {{ props.subtitle ?? "Together, we're making a measurable difference in communities across the region." }}
                 </p>
             </div>

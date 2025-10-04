@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
@@ -10,14 +11,15 @@ import NewsLetterSection from './Partials/NewsLetterSection.vue';
 
 <template>
     <WebsiteLayout class="min-h-svh">
+        <Head title="Blog" />
 
-        <HeroSection 
+        <HeroSection
             title="Blog & Updates"
-            subtitle="Stories of impact, community and hope" 
+            subtitle="Stories of impact, community and hope"
         />
         <BlogProper />
         <NewsLetterSection />
-        <MissionCtaSection 
+        <MissionCtaSection
             title="Be part of the story. Help us create more impact."
             :subtitle="'Every donation, every volunteer hour, and every shared story brings us closer \nto transforming communities across Ghana. Join us in making a lasting difference.'"
         />

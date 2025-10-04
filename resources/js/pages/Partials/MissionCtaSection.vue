@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils'
 import { HTMLAttributes } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps < {
     title?: string,
@@ -12,7 +13,7 @@ const props = defineProps < {
 
 <template>
     <!-- Join Our Mission CTA Section -->
-    <section :class="cn('bg-brand/30 py-16 lg:py-24 px-10', props.class)">
+    <section :class="cn('bg-brand/30 py-16 lg:py-24 lg:px-10', props.class)">
         <div class="container-primary text-center">
 
             <!-- CTA Header -->
@@ -28,16 +29,18 @@ const props = defineProps < {
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center items-center">
                 <!-- Primary CTA Button -->
-                <button
+                <Link
+                    href="/donate"
                     class="bg-brand hover:bg-orange-600 text-background font-semibold px-8 lg:px-10 py-4 lg:py-5 rounded-xl text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl min-w-[200px] shadow-lg">
                     Make a Donation
-                </button>
+                </Link>
 
                 <!-- Secondary CTA Button -->
-                <button
+                <Link
+                    href="/contact"
                     class="border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold px-8 lg:px-10 py-4 lg:py-5 rounded-xl text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
                     Become a Volunteer
-                </button>
+                </Link>
             </div>
 
         </div>

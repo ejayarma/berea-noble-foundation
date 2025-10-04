@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Head } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
@@ -9,16 +10,16 @@ import GalleryProper from './GalleryProper.vue';
 
 <template>
     <WebsiteLayout class="min-h-svh">
-
-        <HeroSection image-url="@images/gallery-hero.jpeg" 
+        <Head title="Gallery" />
+        <HeroSection image-url="@images/gallery-hero.jpeg"
             title="Gallery"
-            :subtitle="'Capturing moments of hope \nlearning and community impact.'" 
+            :subtitle="'Capturing moments of hope \nlearning and community impact.'"
         />
 
         <GalleryProper />
 
         <!-- Our Story Section -->
-        <section class="py-16 px-10 bg-gray-50">
+        <section class="py-16 lg:px-10 bg-gray-50">
             <div class="container-primary">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <!-- Left Column - Content -->
@@ -41,16 +42,16 @@ import GalleryProper from './GalleryProper.vue';
                             </p>
                         </blockquote>
 
-                        <div class="flex justify-between gap-6 flex-col lg:flex-row">
-                            <div class="inline-grid place-items-center">
+                        <div class="flex justify-between gap-6 flex-col md:flex-row my-10">
+                            <div class="inline-grid place-items-center text-center">
                                 <div class="font-bold text-brand text-xl sm:text-2xl lg:text-3xl xl:text-4xl">1000+</div>
                                 <div class="text-lg sm:text-xl lg:text-2xl font-medium text-gray-700">Books shared</div>
                             </div>
-                            <div class="inline-grid place-items-center">
+                            <div class="inline-grid place-items-center text-center">
                                 <div class="font-bold text-brand text-xl sm:text-2xl lg:text-3xl xl:text-4xl">500</div>
                                 <div class="text-lg sm:text-xl lg:text-2xl font-medium text-gray-700">Children Impacted</div>
                             </div>
-                            <div class="inline-grid place-items-center">
+                            <div class="inline-grid place-items-center text-center">
                                 <div class="font-bold text-brand text-xl sm:text-2xl lg:text-3xl xl:text-4xl">50+</div>
                                 <div class="text-lg sm:text-xl lg:text-2xl font-medium text-gray-700">Communities served</div>
                             </div>
@@ -75,8 +76,7 @@ import GalleryProper from './GalleryProper.vue';
             </div>
         </section>
 
-
-        <MissionCtaSection 
+        <MissionCtaSection
             title="Every picture tells a story"
             subtitle="Help us create more stories of hope and empowerment in communities across Ghana."
         />

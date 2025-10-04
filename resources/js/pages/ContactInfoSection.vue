@@ -1,5 +1,5 @@
 <template>
-  <section class="py-16 px-10 bg-gray-50">
+  <section class="py-16 lg:px-10 bg-gray-50">
     <div class="container-primary">
       <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
         Get in Touch
@@ -29,8 +29,8 @@
             <div>
               <p class="font-medium">Our Address</p>
               <p class="text-gray-600">
-                123 Liberation Road<br />
-                East Legon, Accra<br />
+                201, Avenue of the Stars<br />
+                Airport Hills, Accra<br />
                 Ghana
               </p>
             </div>

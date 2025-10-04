@@ -3,18 +3,24 @@ import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
+import DonationFormSection from './DonationFormSection.vue';
+import { Head } from '@inertiajs/vue3';
 
 </script>
 
 <template>
     <WebsiteLayout class="min-h-svh">
 
-        <HeroSection 
+        <Head title="Donate" />
+
+        <HeroSection
             title="Donate Now"
-            :subtitle="'Your support brings knowledge, hope, and care to communities in need.'" 
+            :subtitle="'Your support brings knowledge, hope, and care to communities in need.'"
         />
 
-        <section class="py-16 lg:py-24 px-10 bg-white">
+        <DonationFormSection />
+
+        <section class="pb-16 lg:pb-24 px-10 bg-white">
         <div class="container-primary">
 
             <!-- Header -->
@@ -89,7 +95,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                 </blockquote>
             </div>
         </section>
-        <MissionCtaSection 
+        <MissionCtaSection
             title="Every cedi makes a difference"
             :subtitle="'Partner with us today and help transform lives through \neducation and community support.'"
         />

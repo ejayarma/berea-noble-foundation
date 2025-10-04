@@ -11,7 +11,7 @@ const props = defineProps < {
     <footer :class="props.class">
         <div class="py-20 bg-darkest rounded-t-xl text-background">
             <div class="container-primary">
-                <div class="flex justify-between gap-10 px-10">
+                <div class="flex justify-between gap-10 lg:px-10">
                     <div class="w-1/3">
                         <a href="#">
                             <img class="h-14 mb-10 px-4 bg-background/95 rounded-md" src="@images/logo-full.png" alt="Banner" />

@@ -4,6 +4,7 @@ import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import ImpactSection from './Partials/ImpactSection.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
+import { Link } from '@inertiajs/vue3';
 
 </script>
 
@@ -15,65 +16,22 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                 image-url="@images/home-hero-bg.jpeg"
                 :title="'Bringing Knowledge & Hope\nto Communities'"
                 :subtitle="'Empowering children and supporting the underprivileged through\neducation and care.'"
-
             >
             <!-- Call to Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <button
+                    <Link
+                        href="/donate"
                         class="bg-brand hover:bg-orange-600 text-background font-semibold px-6 py-3 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto min-w-[160px]">
                         Donate Now
-                    </button>
-                    <button
+                    </Link>
+                    <Link
+                        href="/about-us"
                         class="border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold px-6 py-3 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-w-[160px]">
                         Learn More
-                    </button>
+                    </Link>
                 </div>
 
-            </HeroSection> 
-            <!-- Hero Section -->
-            <!-- <section class="relative min-h-svh bg-gray-900 overflow-hidden">
-                <div class="absolute inset-0">
-                    <img src="@images/home-hero-bg.jpeg"
-                        alt="Children learning in community" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/60"></div>
-                </div>
-
-                <div class="relative z-10 flex items-center justify-center min-h-svh px-10">
-                    <div class="container-primary text-center">
-
-                        <h1
-                            class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background mb-6 leading-tight">
-                            Bringing Knowledge & Hope
-                            <br class="hidden sm:block">
-                            <span class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">to Communities</span>
-                        </h1>
-
-                        <p class="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-12 max-w-4xl mx-auto leading-relaxed">
-                            Empowering children and supporting the underprivileged through
-                            <br class="hidden sm:block">
-                            education and care.
-                        </p>
-
-                        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                            <button
-                                class="bg-brand hover:bg-orange-600 text-background font-semibold px-6 py-3 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg w-full sm:w-auto min-w-[160px]">
-                                Donate Now
-                            </button>
-                            <button
-                                class="border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold px-6 py-3 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 w-full sm:w-auto min-w-[160px]">
-                                Learn More
-                            </button>
-                        </div>
-
-                        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                            <svg class="w-6 h-6 text-background" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
+            </HeroSection>
 
             <section class="mt-30 bg-gradient-to-r from-orange-50 to-background">
                 <div class="w-full max-w-7xl mx-auto">
@@ -130,7 +88,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                 </div>
             </section>
 
-            <section class="py-16 lg:py-24 bg-white px-10">
+            <section class="py-16 lg:py-24 bg-white lg:px-10">
                 <div class="container-primary">
 
                     <!-- Header Section -->
@@ -138,7 +96,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                         <h2 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 lg:mb-8">
                             What We Do
                         </h2>
-                        <p class="text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                        <p class="text-prose-alt">
                             Our comprehensive programs address the diverse needs of communities through education,
                             healthcare, and social support.
                         </p>
@@ -152,14 +110,11 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                             class="relative text-center mt-4 bg-background rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300 group">
 
                             <!-- Icon -->
-                             <div class="absolute -top-8 left-0 w-full flex justify-center">
-                                 <div class="size-16 bg-brand rounded-full flex items-center justify-center mb-6">
-                                     <svg class="w-8 h-8 text-background" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                                    </svg>
-                                 </div>
-                             </div>
+                            <div class="absolute -top-8 left-0 w-full flex justify-center">
+                                <div class="size-16 bg-brand text-background rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><!-- Icon from Streamline by Streamline - https://creativecommons.org/licenses/by/4.0/ --><path fill="currentColor" fill-rule="evenodd" d="M6.375 1.653C5.386 1.099 3.536.42 1.496.179C.674.082 0 .76 0 1.588v8c0 .829.677 1.489 1.492 1.637c1.84.334 3.371 1.216 4.348 1.914q.248.175.535.266zm1.25 11.752q.287-.09.534-.265c.977-.698 2.508-1.581 4.349-1.915c.815-.148 1.492-.808 1.492-1.637v-8C14 .76 13.326.082 12.504.18c-2.04.242-3.89.92-4.879 1.474v11.752Z" clip-rule="evenodd"/></svg>
+                                </div>
+                            </div>
 
                             <!-- Title -->
                             <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
@@ -174,14 +129,14 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                             <!-- Learn More Link -->
                             <div class="mt-auto">
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 duration-200 group-hover:translate-x-1 transform transition-transform">
                                     Learn More
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
 
                                 <!-- Orange underline -->
                                 <div class="w-full h-1 bg-brand rounded-full mt-4"></div>
@@ -192,14 +147,14 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                         <div
                             class="relative text-center mt-4 bg-background rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300 group">
                             <!-- Icon -->
-                             <div class="absolute -top-8 left-0 w-full flex justify-center">
-                                 <div class="size-16 bg-brand rounded-full flex items-center justify-center mb-6">
-                                     <svg class="w-8 h-8 text-background" fill="currentColor" viewBox="0 0 24 24">
-                                         <path
-                                             d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                     </svg>
-                                 </div>
-                             </div>
+                            <div class="absolute -top-8 left-0 w-full flex justify-center">
+                                <div class="size-16 bg-brand rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-8 h-8 text-background" fill="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg>
+                                </div>
+                            </div>
 
                             <!-- Title -->
                             <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
@@ -214,14 +169,14 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                             <!-- Learn More Link -->
                             <div class="mt-auto">
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group-hover:translate-x-1 transform transition-transform">
                                     Learn More
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
 
                                 <!-- Orange underline -->
                                 <div class="w-full h-1 bg-brand rounded-full mt-4"></div>
@@ -232,14 +187,11 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                         <div
                             class="relative text-center mt-4 bg-background rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300 group">
                             <!-- Icon -->
-                             <div class="absolute -top-8 left-0 w-full flex justify-center">
-                                 <div class="size-16 bg-brand rounded-full flex items-center justify-center mb-6">
-                                    <svg class="w-8 h-8 text-background" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M19 8h-2v3h-3v2h3v3h2v-3h3v-2h-3V8zM4 8h5V6H4V4h5V2H2v6.01L2 18c0 1.1.9 2 2 2h6v-2H4V8z" />
-                                    </svg>
-                                 </div>
-                             </div>
+                            <div class="absolute -top-8 left-0 w-full flex justify-center">
+                                <div class="size-16 bg-brand text-background rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M4 22q-.825 0-1.412-.587T2 20V8q0-.825.588-1.412T4 6h4V4q0-.825.588-1.412T10 2h4q.825 0 1.413.588T16 4v2h4q.825 0 1.413.588T22 8v12q0 .825-.587 1.413T20 22zm6-16h4V4h-4zm1 9v2q0 .425.288.713T12 18t.713-.288T13 17v-2h2q.425 0 .713-.288T16 14t-.288-.712T15 13h-2v-2q0-.425-.288-.712T12 10t-.712.288T11 11v2H9q-.425 0-.712.288T8 14t.288.713T9 15z"/></svg>
+                                </div>
+                            </div>
 
                             <!-- Title -->
                             <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
@@ -253,14 +205,14 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                             <!-- Learn More Link -->
                             <div class="mt-auto">
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group-hover:translate-x-1 transform transition-transform">
                                     Learn More
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
 
                                 <!-- Orange underline -->
                                 <div class="w-full h-1 bg-brand rounded-full mt-4"></div>
@@ -271,14 +223,11 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                         <div
                             class="relative text-center mt-4 bg-background rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300 group">
                             <!-- Icon -->
-                             <div class="absolute -top-8 left-0 w-full flex justify-center">
-                                 <div class="size-16 bg-brand rounded-full flex items-center justify-center mb-6">
-                                    <svg class="w-8 h-8 text-background" fill="currentColor" viewBox="0 0 24 24">
-                                        <path
-                                            d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.83 0-1.54.5-1.85 1.22l-1.92 5.78A2 2 0 0 0 15.09 18H16v4h4zM12.5 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 9.17 11 10s.67 1.5 1.5 1.5zm1.5 1h-4c-.83 0-1.54.5-1.85 1.22L6.23 18.63c-.15.45.14.87.63.87H8v3h2v-3h2v3h2v-3h1.14c.49 0 .78-.42.63-.87L13.85 13.22c-.31-.72-1.02-1.22-1.85-1.22z" />
-                                    </svg>
-                                 </div>
-                             </div>
+                            <div class="absolute -top-8 left-0 w-full flex justify-center">
+                                <div class="size-16 bg-brand text-background rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Google Material Icons by Material Design Authors - https://github.com/material-icons/material-icons/blob/master/LICENSE --><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3s1.34 3 3 3m-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5S5 6.34 5 8s1.34 3 3 3m0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5m8 0c-.29 0-.62.02-.97.05c.02.01.03.03.04.04c1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5"/></svg>
+                                </div>
+                            </div>
 
                             <!-- Title -->
                             <h3 class="text-xl lg:text-2xl font-bold text-gray-900 mb-4">
@@ -293,14 +242,14 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                             <!-- Learn More Link -->
                             <div class="mt-auto">
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group-hover:translate-x-1 transform transition-transform">
                                     Learn More
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
 
                                 <!-- Orange underline -->
                                 <div class="w-full h-1 bg-brand rounded-full mt-4"></div>
@@ -318,7 +267,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
             <!-- Gallery SECTION -->
 
-            <section class="py-16 lg:py-24 bg-background px-10">
+            <section class="py-16 lg:py-24 bg-background lg:px-10">
                 <div class="container-primary">
 
                     <!-- Header -->
@@ -399,10 +348,10 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                     <!-- View Full Gallery Button -->
                     <div class="text-center">
-                        <button
+                        <Link href="/gallery" variant="button"
                             class="inline-flex items-center justify-center px-8 py-4 border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
                             View Full Gallery
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
@@ -410,7 +359,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
 
             <!-- BLOG SECTION -->
-            <section class="py-16 lg:py-24 bg-gray-50 px-10">
+            <section class="py-16 lg:py-24 bg-gray-50 lg:px-10">
                 <div class="container-primary">
 
                     <!-- Header -->
@@ -468,7 +417,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                 </p>
 
                                 <!-- Read More Link -->
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group">
                                     Read More
                                     <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
@@ -476,7 +425,7 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </article>
 
@@ -590,10 +539,11 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 
                     <!-- View All Posts Button -->
                     <div class="text-center">
-                        <button
+                        <Link
+                            href="/blog"
                             class="inline-flex items-center justify-center px-8 py-4 border-2 border-brand text-brand hover:bg-brand hover:text-background font-semibold text-lg rounded-xl transition-all duration-300 transform hover:scale-105 min-w-[200px]">
                             View All Posts
-                        </button>
+                        </Link>
                     </div>
 
                 </div>
