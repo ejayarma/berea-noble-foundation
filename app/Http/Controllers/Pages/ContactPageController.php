@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Mail;
-
+use App\Models\Admin\ContactForm;
 
 class ContactPageController extends Controller
 {
@@ -20,18 +21,28 @@ class ContactPageController extends Controller
     /**
      * Handle the form submission request.
      */
-    public function post(Request $request)
+    public function store(Request $request)
     {
         $data = $request->validate([
-            'full_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'organization' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:255',
             'email'     => 'required|email',
-            'phone'     => 'nullable|string|max:20',
+            'phone'     => 'required|string|max:20',
+            'country'     => 'required|string|max:2|exists:countries,short_name',
             'subject'   => 'required|string|max:255',
-            'message'   => 'required|string',
+            'message'   => 'required|string|max:1000',
+        ], [
+            'country.exists' => "Please select a valid country"
         ]);
 
+
+        $data['geo_data'] = geoip()->getLocation();
+
+        ContactForm::create($data);
+
         // Example: send email (configure mail in .env first)
-        Mail::raw("Message from {$data['full_name']} ({$data['email']} - {$data['phone']})\n\n{$data['message']}", function ($msg) use ($data) {
+        Mail::raw("Message from {$data['name']} ({$data['email']} - {$data['phone']})\n\n{$data['message']}", function ($msg) use ($data) {
             $msg->to('info@beanoblefoundation.org')
                 ->subject($data['subject']);
         });

@@ -6,8 +6,17 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import BlogProper from './BlogProper.vue';
 import NewsLetterSection from './Partials/NewsLetterSection.vue';
+import { BlogPost } from '@/types';
+
+interface Props {
+    posts?: BlogPost[]
+}
+
+const props = defineProps<Props>();
 
 </script>
+
+
 
 <template>
     <WebsiteLayout class="min-h-svh">
@@ -17,7 +26,7 @@ import NewsLetterSection from './Partials/NewsLetterSection.vue';
             title="Blog & Updates"
             subtitle="Stories of impact, community and hope"
         />
-        <BlogProper />
+        <BlogProper :posts="props.posts" />
         <NewsLetterSection />
         <MissionCtaSection
             title="Be part of the story. Help us create more impact."

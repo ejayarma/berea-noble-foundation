@@ -179,7 +179,7 @@
     }
 
     .container-primary {
-        @apply container w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-10;
+        @apply container w-full mx-auto max-w-7xl px-6 sm:px-10 lg:px-12;
     }
 
     .container-secondary {
@@ -224,6 +224,10 @@
 
     .text-prose-alt {
         @apply text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed
+    }
+
+    .iti {
+        @apply w-full
     }
 
 }

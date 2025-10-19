@@ -13,10 +13,13 @@ use Inertia\Inertia;
 Route::get('/', HomePageController::class)->name('home');
 Route::get('/about-us', AboutUsPageController::class)->name('about-us');
 Route::get('/contact', [ContactPageController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactPageController::class, 'post'])->name('contact.submit');
-Route::get('/gallery', GalleryPageController::class)->name('gallery');
+Route::post('/contact', [ContactPageController::class, 'store'])->name('contact.store');
+Route::get('/gallery', [GalleryPageController::class, 'index'])->name('gallery.index');
+Route::get('/gallery/albums/{album}', [GalleryPageController::class, 'album'])->name('gallery.album');
+
 Route::get('/programs', ProgramsPageController::class)->name('programs');
-Route::get('/blog', BlogPageController::class)->name('blog');
+Route::get('/blog', [BlogPageController::class, 'index'])->name('blog');
+Route::get('/blog/{slug}', [BlogPageController::class, 'read'])->name('blog');
 Route::get('/donate', DonatePageController::class)->name('donate');
 
 Route::get('dashboard', function () {
@@ -26,3 +29,4 @@ Route::get('dashboard', function () {
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
+// require __DIR__ . '/admin.php';
