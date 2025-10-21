@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import GalleryProper from './GalleryProper.vue';
+
+const pageUrl = usePage().url;
 
 interface Props {
     albums: Array<any>;
@@ -21,15 +23,35 @@ const props = defineProps<Props>();
 <template>
     <WebsiteLayout class="min-h-svh">
 
-        <Head title="Gallery" />
+        <Head>
+            <title>Gallery - See Our Impact | Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" content="Explore moments that capture the heart of our mission. See the joy and impact we're creating in communities through our mobile library and programs." />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="pageUrl" />
+            <meta property="og:title" content="Gallery - See Our Impact | Berea Noble Foundation" />
+            <meta property="og:description" content="Explore moments that capture the heart of our mission. See the joy and impact we're creating in communities through our mobile library and programs." />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="pageUrl" />
+            <meta property="twitter:title" content="Gallery - See Our Impact | Berea Noble Foundation" />
+            <meta property="twitter:description" content="Explore moments that capture the heart of our mission. See the joy and impact we're creating in communities through our mobile library and programs." />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="pageUrl" />
+
+        </Head>
 
         <HeroSection image-url="@images/gallery-hero.jpeg" title="Gallery"
             :subtitle="'Capturing moments of hope \nlearning and community impact.'" />
 
-        <GalleryProper 
-            :albums="props.albums" 
-            :photos="props.photos" 
-            :categories="props.categories" 
+        <GalleryProper
+            :albums="props.albums"
+            :photos="props.photos"
+            :categories="props.categories"
             :initial-category="props.initialCategory"
             :selectedAlbumSlug="props.selectedAlbum"
             :view="props.view" />

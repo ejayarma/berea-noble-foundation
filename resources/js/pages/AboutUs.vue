@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import ImpactSection from './Partials/ImpactSection.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import { TeamMember } from '@/types';
+const pageUrl = usePage().url;
 
 // Team member interface
 
@@ -56,7 +57,28 @@ withDefaults(defineProps<Props>(), {
 <template>
     <WebsiteLayout class="min-h-svh">
 
-        <Head title="About Us" />
+        <Head>
+            <title>About Us - Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" content="Learn about our mission to create lasting change through education, healthcare, and community support. Discover the story behind Berea Noble Foundation." />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="pageUrl" />
+            <meta property="og:title" content="About Us - Berea Noble Foundation" />
+            <meta property="og:description" content="Learn about our mission to create lasting change through education, healthcare, and community support. Discover the story behind Berea Noble Foundation." />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="pageUrl" />
+            <meta property="twitter:title" content="About Us - Berea Noble Foundation" />
+            <meta property="twitter:description" content="Learn about our mission to create lasting change through education, healthcare, and community support. Discover the story behind Berea Noble Foundation." />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="pageUrl" />
+
+        </Head>
+
         <HeroSection image-url="@images/about-us-hero.jpeg" title="About Us" subtitle="Who we are and why we serve" />
         <section class="py-16 lg:px-10">
             <div class="container-primary grid lg:grid-cols-2 gap-12 items-start">

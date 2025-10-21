@@ -5,6 +5,11 @@ export interface Auth {
     user: User;
 }
 
+export interface App {
+    name: string;
+    url: string;
+}
+
 export interface BreadcrumbItem {
     title: string;
     href: string;
@@ -23,6 +28,7 @@ export type AppPageProps<
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
+    app: App;
     sidebarOpen: boolean;
 };
 

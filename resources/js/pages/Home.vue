@@ -1,15 +1,20 @@
 <script setup lang="ts">
+import { Head, usePage } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import ImpactSection from './Partials/ImpactSection.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import { Link } from '@inertiajs/vue3';
+const { app } = usePage().props;
+const pageUrl = usePage().url;
+
 
 </script>
 
 <template>
     <WebsiteLayout class="min-h-svh">
+        
         <div>
             <HeroSection
                 show-scroll-indicator

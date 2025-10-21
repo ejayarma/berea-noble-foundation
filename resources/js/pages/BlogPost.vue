@@ -64,7 +64,27 @@ const getCategoryColor = (category: string) => {
 
 <template>
     <WebsiteLayout class="min-h-svh">
-        <Head title="Blog" />
+        <Head>
+            <title>{{ `${post.title}` }} - Blog | Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" :content="post.excerpt || 'Stay updated with our latest activities, success stories, and community impact. Read inspiring stories of transformation and growth.'" />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="page.url" />
+            <meta property="og:title" :content="`${post.title} - Blog | Berea Noble Foundation`" />
+            <meta property="og:description" :content="post.excerpt || 'Stay updated with our latest activities, success stories, and community impact. Read inspiring stories of transformation and growth.'" />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="page.url" />
+            <meta property="twitter:title" :content="`${post.title} - Blog | Berea Noble Foundation`" />
+            <meta property="twitter:description" :content="post.excerpt || 'Stay updated with our latest activities, success stories, and community impact. Read inspiring stories of transformation and growth.'" />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="page.url" />
+
+        </Head>
 
         <!-- Hero Section -->
         <section class="relative h-[400px] md:h-[500px] overflow-hidden">

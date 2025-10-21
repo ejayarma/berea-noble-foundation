@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
@@ -7,14 +7,35 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 import ContactFormSection from './ContactFormSection.vue';
 import ContactInfoSection from './ContactInfoSection.vue';
 
-
+const pageUrl = usePage().url;
 
 </script>
 
 <template>
     <WebsiteLayout class="min-h-svh">
 
-        <Head title="Contact" />
+        <Head>
+            <title>Contact Us - Get in Touch | Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" content="Get in touch with Berea Noble Foundation. We'd love to hear from you about volunteering, partnerships, or supporting our mission." />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="pageUrl" />
+            <meta property="og:title" content="Contact Us - Get in Touch | Berea Noble Foundation" />
+            <meta property="og:description" content="Get in touch with Berea Noble Foundation. We'd love to hear from you about volunteering, partnerships, or supporting our mission." />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="pageUrl" />
+            <meta property="twitter:title" content="Contact Us - Get in Touch | Berea Noble Foundation" />
+            <meta property="twitter:description" content="Get in touch with Berea Noble Foundation. We'd love to hear from you about volunteering, partnerships, or supporting our mission." />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="pageUrl" />
+
+        </Head>
+
 
         <HeroSection title="Contact Us" subtitle="We'd love to hear from you" />
         <section class="py-16 lg:px-10">

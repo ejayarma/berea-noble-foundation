@@ -1,16 +1,39 @@
 <script setup lang="ts">
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
 import WebsiteLayout from '@/layouts/WebsiteLayout.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import ImpactSection from './Partials/ImpactSection.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 
+const pageUrl = usePage().url;
+
 </script>
 
 <template>
     <WebsiteLayout class="min-h-svh">
-        <Head title="Programs" />
+        <Head>
+            <title>Our Programs - Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" content="Creating impact through education, care and community empowerment. Explore our mobile libraries, child support programs, elderly healthcare, and community book clubs." />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="pageUrl" />
+            <meta property="og:title" content="Our Programs - Berea Noble Foundation" />
+            <meta property="og:description" content="Creating impact through education, care and community empowerment. Explore our mobile libraries, child support programs, elderly healthcare, and community book clubs." />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="pageUrl" />
+            <meta property="twitter:title" content="Our Programs - Berea Noble Foundation" />
+            <meta property="twitter:description" content="Creating impact through education, care and community empowerment. Explore our mobile libraries, child support programs, elderly healthcare, and community book clubs." />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="pageUrl" />
+
+        </Head>
+
         <HeroSection
                 image-url="@images/programs-hero.jpeg"
                 title="Our Programs"

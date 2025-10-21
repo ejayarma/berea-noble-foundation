@@ -32,7 +32,7 @@
             }
         </style> --}}
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'Laravel') }} - Empowering Communities Through Education & Care</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -40,6 +40,57 @@
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=montserrat:400,500,600" rel="stylesheet" />
+
+        <!-- Primary Meta Tags -->
+        <meta name="title" content="Home | {{ config('app.name') }}} - Empowering Communities Through Education & Care" />
+        <meta name="description" content="Berea Noble Foundation brings knowledge and hope to underserved communities through mobile libraries, educational programs, healthcare for the elderly, and support services for children." />
+        <meta name="keywords" content="mobile library, education foundation, community development, children support, elderly care, book distribution, Ghana charity, nonprofit organization, community book clubs, educational programs" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="{{ config('app.name') }}" />
+        <meta name="language" content="English" />
+        <meta name="revisit-after" content="7 days" />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:url" content="{{ config('app.url') }}" />
+        <meta property="og:title" content="Berea Noble Foundation - Empowering Communities Through Education & Care" />
+        <meta property="og:description" content="Creating lasting change through education, healthcare, and support services." />
+        <meta property="og:image" content="{{ config('app.url') }}/images/ogt.png" />
+        <meta property="og:site_name" {{ config('app.name') }} />
+        <meta property="og:locale" content="en_US" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" :content="pageUrl" />
+        <meta property="twitter:title" content="Berea Noble Foundation - Empowering Communities Through Education & Care" />
+        <meta property="twitter:description" content="Creating lasting change through education, healthcare, and support services." />
+        <meta property="twitter:image" content="{{ config('app.url') }}/images/ogt.png"  />
+
+        <!-- Canonical -->
+        <link rel="canonical" href="{{ config('app.url') }}" />
+
+        <!-- Geo Tags -->
+        <meta name="geo.region" content="GH" />
+        <meta name="geo.placename" content="Accra" />
+
+        <!-- JSON-LD Schema -->
+        @verbatim
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "NGO",
+                "name": "{{ config('app.name') }}",
+                "description": "Empowering communities through education, healthcare, and support services",
+                "url": "{{ config('app.url') }}",
+                "logo": "{{ config('app.url') }}/images/logo-full.png",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Accra",
+                    "addressRegion": "Greater Accra",
+                    "addressCountry": "GH"
+                },
+            }
+            </script>
+        @endverbatim
 
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead

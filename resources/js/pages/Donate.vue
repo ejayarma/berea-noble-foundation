@@ -4,14 +4,35 @@ import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import DonationFormSection from './DonationFormSection.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, usePage } from '@inertiajs/vue3';
+const pageUrl = usePage().url;
 
 </script>
 
 <template>
     <WebsiteLayout class="min-h-svh">
 
-        <Head title="Donate" />
+          <Head>
+            <title>Donate Now - Support Our Mission | Berea Noble Foundation</title>
+
+            <!-- Primary Meta Tags -->
+            <meta name="description" content="Make a difference today. Your donation helps provide education, healthcare, and support to underserved communities. Every contribution counts." />
+
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website" />
+            <meta property="og:url" :content="pageUrl" />
+            <meta property="og:title" content="Donate Now - Support Our Mission | Berea Noble Foundation" />
+            <meta property="og:description" content="Make a difference today. Your donation helps provide education, healthcare, and support to underserved communities. Every contribution counts." />
+
+            <!-- Twitter -->
+            <meta property="twitter:url" :content="pageUrl" />
+            <meta property="twitter:title" content="Donate Now - Support Our Mission | Berea Noble Foundation" />
+            <meta property="twitter:description" content="Make a difference today. Your donation helps provide education, healthcare, and support to underserved communities. Every contribution counts." />
+
+            <!-- Canonical -->
+            <link rel="canonical" :href="pageUrl" />
+
+        </Head>
 
         <HeroSection
             title="Donate Now"
