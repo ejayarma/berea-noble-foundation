@@ -11,6 +11,8 @@ class ContactForm extends Model
 {
     use SoftDeletes;
 
+    const COUNT_CACHE_KEY = 'CONTACT_FORM_ENTRIES_COUNT';
+
     protected $fillable = [
         'name',
         'email',

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Authors\Schemas;
+namespace App\Filament\Resources\TeamMembers\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use Filament\Forms\Components\FileUpload;
 
-
-class AuthorForm
+class TeamMemberForm
 {
     public static function configure(Schema $schema): Schema
     {
@@ -15,17 +14,19 @@ class AuthorForm
             ->components([
                 TextInput::make('name')
                     ->required()
-                    ->unique('authors', 'name')
+                    ->unique('team_members', 'name')
                     ->string(),
 
-                FileUpload::make('avatar')
-                    ->label('Author Image')
+                TextInput::make('position')
+                    ->required()
+                    ->string(),
+
+                FileUpload::make('image')
+                    ->required()
                     ->image()
-                    ->avatar()
-                    ->circleCropper()
                     ->disk('public')
                     ->visibility('public')
-                    ->directory('author-avatar')
+                    ->directory('team-member')
                     ->moveFiles()
                     ->maxSize(2048)
                     ->imageEditor(),

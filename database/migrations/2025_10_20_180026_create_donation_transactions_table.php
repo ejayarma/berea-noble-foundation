@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('donation_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete();
-            $table->string('description')->nullable();
-            $table->string('image');
-            $table->boolean('is_published')->default(true);
+            $table->foreignId('donation_id')->constrained('donations');
+            $table->string('transaction_id');
+            $table->string('transaction_status', 20); // PENDING, SUCCESS, FAILED
             $table->timestamps();
             $table->softDeletes();
-            $table->index('album_id');
-            $table->index('created_at');
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('donation_transactions');
     }
 };

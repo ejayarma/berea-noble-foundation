@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Album;
+use App\Models\Admin\GalleryCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Storage;
 
 
 class GalleryPageController extends Controller
@@ -17,21 +19,34 @@ class GalleryPageController extends Controller
     public function index(Request $request): Response
     {
         $category = $request->get('category', 'all');
-        $albumId = $request->get('album');
+        $albumSlug = $request->get('album');
 
-        $albums = Album::query()->published()
+        $categories = GalleryCategory::query()
+            ->get()
+            ->map(function ($cat) {
+                return [
+                    'id' => $cat->id,
+                    'name' => $cat->name,
+                    'slug' => $cat->slug,
+                ];
+            });
+
+        $albums = Album::query()
+            ->published()
             ->byCategory($category)
             ->ordered()
             ->withCount('publishedPhotos')
+            ->with('category')
             ->get()
             ->map(function ($album) {
                 return [
-                    'id' => (string) $album->id,
+                    'id' => $album->id,
                     'title' => $album->title,
                     'description' => $album->description,
-                    'cover_image' => $album->cover_image_url,
+                    'slug' => $album->slug,
+                    'cover_image' => Storage::url($album->cover_image_url),
                     'photo_count' => $album->published_photos_count,
-                    'category' => $album->category,
+                    'category' => $album->category->slug,
                     'created_at' => $album->created_at->toDateString(),
                 ];
             });
@@ -39,31 +54,32 @@ class GalleryPageController extends Controller
         $photos = [];
         $selectedAlbum = null;
 
-        if ($albumId) {
-            $album = Album::query()->published()->findOrFail($albumId);
-            $selectedAlbum = (string) $album->id;
+        if ($albumSlug) {
+            $album = Album::query()->published()->firstWhere('slug', $albumSlug);
+            $selectedAlbum = $album->slug;
 
             $photos = $album->publishedPhotos()
                 ->ordered()
                 ->get()
-                ->map(function ($photo) {
+                ->map(function ($photo) use ($album) {
                     return [
-                        'id' => (string) $photo->id,
-                        'src' => $photo->src,
-                        'alt' => $photo->alt,
-                        'title' => $photo->title,
-                        'category' => $photo->category,
-                        'album_id' => (string) $photo->album_id,
+                        'id' => $photo->id,
+                        'src' => $photo->image,
+                        'alt' => $photo->description,
+                        'title' => $photo->description,
+                        'category' => $album->category->slug,
+                        'album_id' => $photo->album_id,
                     ];
                 });
         }
 
         return Inertia::render('Gallery', [
+            'categories' => $categories,
             'albums' => $albums,
             'photos' => $photos,
             'initialCategory' => $category,
-            'selectedAlbumId' => $selectedAlbum,
-            'view' => $albumId ? 'photos' : 'albums',
+            'selectedAlbum' => $selectedAlbum,
+            'view' => $albumSlug ? 'photos' : 'albums',
         ]);
     }
 
@@ -71,21 +87,32 @@ class GalleryPageController extends Controller
     {
         $album->load('publishedPhotos');
 
+        $categories = GalleryCategory::query()
+            ->get()
+            ->map(function ($cat) {
+                return [
+                    'id' => $cat->id,
+                    'name' => $cat->name,
+                    'slug' => $cat->slug,
+                ];
+            });
+
         $photos = $album->publishedPhotos->map(function ($photo) {
             return [
-                'id' => (string) $photo->id,
+                'id' => $photo->id,
                 'src' => $photo->src,
                 'alt' => $photo->alt,
                 'title' => $photo->title,
                 'category' => $photo->category,
-                'album_id' => (string) $photo->album_id,
+                'album_id' => $photo->album_id,
             ];
         });
 
         return Inertia::render('Gallery', [
             'albums' => [],
+            'categories' => $categories,
             'photos' => $photos,
-            'selectedAlbumId' => (string) $album->id,
+            'selectedAlbum' => $album->slug,
             'view' => 'photos',
         ]);
     }

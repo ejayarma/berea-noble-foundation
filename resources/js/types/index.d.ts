@@ -39,11 +39,45 @@ export interface User {
 export type BreadcrumbItemType = BreadcrumbItem;
 
 export interface BlogPost {
-  id: number
-  category: 'Education' | 'Community' | 'Medical Support' | 'Stories' | 'Events'
-  image: string
-  date: string
-  title: string
-  description: string
-  slug: string
+    id: number;
+    category: string;
+    image: string;
+    date: string;
+    title: string;
+    description: string;
+    slug: string;
+}
+
+export interface Category {
+    id: number;
+    name: string;
+    slug: string;
+}
+
+interface TeamMember {
+    id: number;
+    name: string;
+    position: string;
+    image: string;
+    alt: string;
+}
+
+interface Photo {
+    id: number;
+    src: string;
+    alt: string;
+    title: string;
+    category: string;
+    album_id?: number;
+}
+
+interface Album {
+    id: number;
+    title: string;
+    slug: string;
+    description: string;
+    cover_image: string;
+    photo_count: number;
+    category: string;
+    created_at: string;
 }

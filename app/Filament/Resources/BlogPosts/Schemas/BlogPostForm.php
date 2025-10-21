@@ -10,7 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\URL;
 
-// use Filament\Forms\Components\RichEditor\TextColor;
+use Filament\Forms\Components\RichEditor\TextColor;
 
 class BlogPostForm
 {
@@ -19,11 +19,13 @@ class BlogPostForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->required()
                     ->columnSpan(3)
                     ->unique('blog_posts', 'title'),
 
 
                 FileUpload::make('image')
+                    ->required()
                     ->columnSpan(1)
                     ->label('Cover Image')
                     ->image()
@@ -35,13 +37,19 @@ class BlogPostForm
                     ->imageEditor(),
 
                 Select::make('blog_post_category_id')
+                    ->required()
                     ->label('Category')
                     ->relationship(name: 'category', titleAttribute: 'name')
+                    // ->createOptionForm([
+                    //     TextInput::make('name')
+                    //         ->required(),
+                    // ])
                     ->columnSpan(1)
                     ->searchable()
                     ->preload(),
 
                 Select::make('author_id')
+                    ->required()
                     ->columnSpan(1)
                     ->label('Author')
                     ->relationship(name: 'author', titleAttribute: 'name')
@@ -49,6 +57,12 @@ class BlogPostForm
                     ->preload(),
 
                 RichEditor::make('content')
+                    ->textColors([
+                        'brand' => TextColor::make('Brand', '#f56600', darkColor: '#f56600'),
+                        ...TextColor::getDefaults(),
+
+                    ])
+                    ->required()
                     ->columnSpan(3)
                     ->columnSpanFull()
 

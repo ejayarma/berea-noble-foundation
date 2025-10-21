@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('cover_image')->nullable();
             $table->foreignId('gallery_category_id')->constrained('gallery_categories');
             $table->boolean('is_published')->default(true);
-            $table->integer('sort_order')->default(0);
             $table->timestamps();
             $table->softDeletes();
-            $table->index('category');
             $table->index('is_published');
             $table->index('created_at');
+            $table->unique(['title', 'deleted_at']);
         });
     }
 

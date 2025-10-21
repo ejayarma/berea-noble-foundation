@@ -3,47 +3,135 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
 import { Button } from '@/components/ui/button'
 import { router } from '@inertiajs/vue3'
-
-// Types
-interface Photo {
-    id: string
-    src: string
-    alt: string
-    title: string
-    category: string
-    album_id?: string
-}
-
-interface Album {
-    id: string
-    title: string
-    description: string
-    cover_image: string
-    photo_count: number
-    category: string
-    created_at: string
-}
-
-interface Category {
-    key: string
-    label: string
-}
+import { Album, Category, Photo } from '@/types'
 
 // Props
 interface Props {
     photos?: Photo[]
     albums?: Album[]
+    categories?: Category[]
     initialCategory?: string
     view?: 'albums' | 'photos'
-    selectedAlbumId?: string | null
+    selectedAlbumSlug?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    photos: () => [],
-    albums: () => [],
+    photos: () => [
+        {
+        id: 1,
+        src: '/images/gallery/mobile-lib-van.jpeg',
+        alt: 'Mobile library van bringing books to rural communities',
+        title: 'Mobile library van',
+        category: 'mobile-library',
+        album_id: 1
+        },
+        {
+            id: 2,
+            src: '/images/gallery/children-excite.jpeg',
+            alt: 'Children excited to receive new books',
+            title: 'Children excited to receive books',
+            category: 'children-education',
+            album_id: 2
+        },
+        {
+            id: 3,
+            src: '/images/gallery/students-engaged.jpeg',
+            alt: 'Students engaged in active learning',
+            title: 'Students engaged in learning',
+            category: 'children-education',
+            album_id: 6
+        },
+        {
+            id: 4,
+            src: '/images/gallery/medical-volunteers.jpeg',
+            alt: 'Medical volunteers providing healthcare',
+            title: 'Medical volunteers',
+            category: 'medical-support',
+            album_id: 4
+        },
+        {
+            id: 5,
+            src: '/images/gallery/weekly-gathering.jpeg',
+            alt: 'Weekly community book club gathering',
+            title: 'Book club gathering',
+            category: 'community-book-clubs',
+            album_id: 3
+        },
+        {
+            id: 6,
+            src: '/images/gallery/rural-village.jpeg',
+            alt: 'Rural village community event',
+            title: 'Village community event',
+            category: 'events-outreach',
+            album_id: 5
+        }
+    ],
+    albums: () => [
+        {
+            id: 1,
+            title: 'Mobile Library Launch 2024',
+            description: 'First day of our mobile library reaching remote villages',
+            cover_image: '/images/gallery/mobile-lib-van.jpeg',
+            photo_count: 15,
+            category: 'mobile-library',
+            slug: 'mobile-library',
+            created_at: '2024-01-15'
+        },
+        {
+            id: 2,
+            title: 'Children Reading Program',
+            description: 'Exciting moments from our reading sessions',
+            cover_image: '/images/gallery/children-excite.jpeg',
+            photo_count: 24,
+            category: 'children-education',
+            slug: 'children-education',
+            created_at: '2024-02-20'
+        },
+        {
+            id: 3,
+            title: 'Community Book Club',
+            description: 'Weekly gatherings bringing people together through books',
+            cover_image: '/images/gallery/weekly-gathering.jpeg',
+            photo_count: 18,
+            category: 'community-book-clubs',
+            slug: 'community-book-clubs',
+            created_at: '2024-03-10'
+        },
+        {
+            id: 4,
+            title: 'Medical Outreach March',
+            description: 'Providing healthcare to underserved communities',
+            cover_image: '/images/gallery/medical-volunteers.jpeg',
+            photo_count: 32,
+            category: 'medical-support',
+            slug: 'medical-support',
+            created_at: '2024-03-25'
+        },
+        {
+            id: 5,
+            title: 'Village Education Fair',
+            description: 'Annual education and community event',
+            cover_image: '/images/gallery/rural-village.jpeg',
+            photo_count: 28,
+            category: 'events-outreach',
+            slug: 'events-outreach',
+            created_at: '2024-04-05'
+        },
+        {
+            id: 6,
+            title: 'Student Learning Sessions',
+            description: 'Interactive classroom activities and learning',
+            cover_image: '/images/gallery/students-engaged.jpeg',
+            photo_count: 20,
+            category: 'children-education',
+            slug: 'children-education',
+            created_at: '2024-04-18'
+        }
+    ],
+    categories: () => [],
     initialCategory: 'all',
     view: 'albums',
-    selectedAlbumId: null
+    selectedAlbumSlug: null
 })
 
 // State
@@ -54,129 +142,11 @@ const lightboxVisible = ref(false)
 const lightboxIndex = ref(0)
 const isLoading = ref(false)
 
-// Categories
-const categories: Category[] = [
-    { key: 'all', label: 'All' },
-    { key: 'mobile-library', label: 'Mobile Library' },
-    { key: 'children-education', label: 'Children & Education' },
-    { key: 'community-book-clubs', label: 'Community Book Clubs' },
-    { key: 'medical-support', label: 'Medical Support' },
-    { key: 'events-outreach', label: 'Events & Outreach' }
-]
-
-// Sample albums data
-const sampleAlbums: Album[] = [
-    {
-        id: '1',
-        title: 'Mobile Library Launch 2024',
-        description: 'First day of our mobile library reaching remote villages',
-        cover_image: '/images/gallery/mobile-lib-van.jpeg',
-        photo_count: 15,
-        category: 'mobile-library',
-        created_at: '2024-01-15'
-    },
-    {
-        id: '2',
-        title: 'Children Reading Program',
-        description: 'Exciting moments from our reading sessions',
-        cover_image: '/images/gallery/children-excite.jpeg',
-        photo_count: 24,
-        category: 'children-education',
-        created_at: '2024-02-20'
-    },
-    {
-        id: '3',
-        title: 'Community Book Club',
-        description: 'Weekly gatherings bringing people together through books',
-        cover_image: '/images/gallery/weekly-gathering.jpeg',
-        photo_count: 18,
-        category: 'community-book-clubs',
-        created_at: '2024-03-10'
-    },
-    {
-        id: '4',
-        title: 'Medical Outreach March',
-        description: 'Providing healthcare to underserved communities',
-        cover_image: '/images/gallery/medical-volunteers.jpeg',
-        photo_count: 32,
-        category: 'medical-support',
-        created_at: '2024-03-25'
-    },
-    {
-        id: '5',
-        title: 'Village Education Fair',
-        description: 'Annual education and community event',
-        cover_image: '/images/gallery/rural-village.jpeg',
-        photo_count: 28,
-        category: 'events-outreach',
-        created_at: '2024-04-05'
-    },
-    {
-        id: '6',
-        title: 'Student Learning Sessions',
-        description: 'Interactive classroom activities and learning',
-        cover_image: '/images/gallery/students-engaged.jpeg',
-        photo_count: 20,
-        category: 'children-education',
-        created_at: '2024-04-18'
-    }
-]
-
-// Sample photos data
-const samplePhotos: Photo[] = [
-    {
-        id: '1',
-        src: '/images/gallery/mobile-lib-van.jpeg',
-        alt: 'Mobile library van bringing books to rural communities',
-        title: 'Mobile library van',
-        category: 'mobile-library',
-        album_id: '1'
-    },
-    {
-        id: '2',
-        src: '/images/gallery/children-excite.jpeg',
-        alt: 'Children excited to receive new books',
-        title: 'Children excited to receive books',
-        category: 'children-education',
-        album_id: '2'
-    },
-    {
-        id: '3',
-        src: '/images/gallery/students-engaged.jpeg',
-        alt: 'Students engaged in active learning',
-        title: 'Students engaged in learning',
-        category: 'children-education',
-        album_id: '6'
-    },
-    {
-        id: '4',
-        src: '/images/gallery/medical-volunteers.jpeg',
-        alt: 'Medical volunteers providing healthcare',
-        title: 'Medical volunteers',
-        category: 'medical-support',
-        album_id: '4'
-    },
-    {
-        id: '5',
-        src: '/images/gallery/weekly-gathering.jpeg',
-        alt: 'Weekly community book club gathering',
-        title: 'Book club gathering',
-        category: 'community-book-clubs',
-        album_id: '3'
-    },
-    {
-        id: '6',
-        src: '/images/gallery/rural-village.jpeg',
-        alt: 'Rural village community event',
-        title: 'Village community event',
-        category: 'events-outreach',
-        album_id: '5'
-    }
-]
-
 // Use props data or sample data
-const allAlbums = computed(() => props.albums.length > 0 ? props.albums : sampleAlbums)
-const allPhotos = computed(() => props.photos.length > 0 ? props.photos : samplePhotos)
+const allAlbums = computed(() => props.albums)
+const allPhotos = computed(() => props.photos)
+// const allAlbums = computed(() => props.albums.length > 0 ? props.albums : sampleAlbums)
+// const allPhotos = computed(() => props.photos.length > 0 ? props.photos : samplePhotos)
 
 // Computed
 const filteredAlbums = computed(() => {
@@ -185,6 +155,18 @@ const filteredAlbums = computed(() => {
     }
     return allAlbums.value.filter(album => album.category === activeCategory.value)
 })
+
+const resolvedCategories = computed(() => {
+    const allCat = {
+        id: -1,
+        name: "All Categories",
+        slug: "all"
+    };
+
+    const result = [allCat, ...props.categories];
+
+    return result;
+});
 
 const filteredPhotos = computed(() => {
     let photos = allPhotos.value
@@ -199,6 +181,11 @@ const filteredPhotos = computed(() => {
         photos = photos.filter(photo => photo.category === activeCategory.value)
     }
 
+    console.log('Active album:', selectedAlbum.value);
+    console.log('Active category:', activeCategory.value);
+    console.log('categories:', resolvedCategories.value);
+    console.log('photos:', photos);
+    
     return photos
 })
 
@@ -262,8 +249,8 @@ onMounted(() => {
     document.addEventListener('keydown', handleKeydown)
 
     // If an album ID is provided in props, open it
-    if (props.selectedAlbumId) {
-        const album = allAlbums.value.find(a => a.id === props.selectedAlbumId)
+    if (props.selectedAlbumSlug) {
+        const album = allAlbums.value.find(a => a.slug === props.selectedAlbumSlug)
         if (album) {
             openAlbum(album)
         }
@@ -281,7 +268,7 @@ defineExpose({
     },
     openAlbum,
     backToAlbums,
-    openPhoto: (photoId: string) => {
+    openPhoto: (photoId: number) => {
         const index = filteredPhotos.value.findIndex(photo => photo.id === photoId)
         if (index !== -1) {
             openLightbox(index)
@@ -312,14 +299,14 @@ defineExpose({
 
             <!-- Filter Tabs -->
             <div class="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
-                <Button v-for="category in categories" :key="category.key" @click="activeCategory = category.key"
+                <Button v-for="category in resolvedCategories" :key="category.id" @click="activeCategory = category.slug"
                     :class="[
                         'px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
-                        activeCategory === category.key
+                        activeCategory === category.slug
                             ? 'bg-orange-500 text-white shadow-lg'
                             : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-                    ]" :aria-pressed="activeCategory === category.key" :aria-label="`Filter by ${category.label}`">
-                    {{ category.label }}
+                    ]" :aria-pressed="activeCategory === category.slug" :aria-label="`Filter by ${category.name}`">
+                    {{ category.name }}
                 </Button>
             </div>
 

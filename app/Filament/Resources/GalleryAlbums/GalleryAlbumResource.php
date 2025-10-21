@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\GalleryCategories;
+namespace App\Filament\Resources\GalleryAlbums;
 
-use App\Filament\Resources\GalleryCategories\Pages\CreateGalleryCategory;
-use App\Filament\Resources\GalleryCategories\Pages\EditGalleryCategory;
-use App\Filament\Resources\GalleryCategories\Pages\ListGalleryCategories;
-use App\Filament\Resources\GalleryCategories\Schemas\GalleryCategoryForm;
-use App\Filament\Resources\GalleryCategories\Tables\GalleryCategoriesTable;
-use App\Models\Admin\GalleryCategory;
+use App\Filament\Resources\GalleryAlbums\Pages\CreateGalleryAlbum;
+use App\Filament\Resources\GalleryAlbums\Pages\EditGalleryAlbum;
+use App\Filament\Resources\GalleryAlbums\Pages\ListGalleryAlbums;
+use App\Filament\Resources\GalleryAlbums\Schemas\GalleryAlbumForm;
+use App\Filament\Resources\GalleryAlbums\Tables\GalleryAlbumsTable;
+use App\Models\Admin\Album;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -17,24 +17,24 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use UnitEnum;
 
-class GalleryCategoryResource extends Resource
+class GalleryAlbumResource extends Resource
 {
-    protected static ?string $model = GalleryCategory::class;
+    protected static ?string $model = Album::class;
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string | UnitEnum | null $navigationGroup = 'Gallery';
 
-    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {
-        return GalleryCategoryForm::configure($schema);
+        return GalleryAlbumForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return GalleryCategoriesTable::configure($table);
+        return GalleryAlbumsTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -47,9 +47,9 @@ class GalleryCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListGalleryCategories::route('/'),
-            'create' => CreateGalleryCategory::route('/create'),
-            'edit' => EditGalleryCategory::route('/{record}/edit'),
+            'index' => ListGalleryAlbums::route('/'),
+            'create' => CreateGalleryAlbum::route('/create'),
+            'edit' => EditGalleryAlbum::route('/{record}/edit'),
         ];
     }
 

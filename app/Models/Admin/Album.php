@@ -17,16 +17,14 @@ class Album extends Model
         'title',
         'description',
         'cover_image',
-        'category',
-        'photo_count',
+        'gallery_category_id',
         'is_published',
-        'sort_order',
+        'slug',
     ];
+
 
     protected $casts = [
         'is_published' => 'boolean',
-        'photo_count' => 'integer',
-        'sort_order' => 'integer',
     ];
 
     protected $appends = [
@@ -36,17 +34,17 @@ class Album extends Model
     // Relationships
     public function photos(): HasMany
     {
-        return $this->hasMany(Photo::class)->orderBy('sort_order');
+        return $this->hasMany(Photo::class);
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(GalleryCategory::class,'gallery_category_id', 'id');
+        return $this->belongsTo(GalleryCategory::class, 'gallery_category_id', 'id');
     }
 
     public function publishedPhotos(): HasMany
     {
-        return $this->hasMany(Photo::class)->where('is_published', true)->orderBy('sort_order');
+        return $this->hasMany(Photo::class)->where('is_published', true);
     }
 
     // Accessors
@@ -61,6 +59,11 @@ class Album extends Model
         }
 
         return Storage::url($this->cover_image);
+    }
+
+    public function getAltAttribute(): string
+    {
+        return $this->alt_text ?? $this->description ?? $this->title;
     }
 
     // Scopes
@@ -79,24 +82,6 @@ class Album extends Model
 
     public function scopeOrdered($query)
     {
-        return $query->orderBy('sort_order')->orderBy('created_at', 'desc');
-    }
-
-    // Methods
-    public function updatePhotoCount(): void
-    {
-        $this->update([
-            'photo_count' => $this->photos()->count()
-        ]);
-    }
-
-    public function updateCoverImage(): void
-    {
-        $firstPhoto = $this->photos()->first();
-        if ($firstPhoto && !$this->cover_image) {
-            $this->update([
-                'cover_image' => $firstPhoto->file_path
-            ]);
-        }
+        return $query->orderBy('created_at', 'desc');
     }
 }

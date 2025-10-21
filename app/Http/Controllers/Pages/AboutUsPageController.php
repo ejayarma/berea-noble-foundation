@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Admin\TeamMember;
+use Illuminate\Support\Facades\Storage;
 
 class AboutUsPageController extends Controller
 {
@@ -13,6 +15,21 @@ class AboutUsPageController extends Controller
      */
     public function __invoke(Request $request)
     {
-    return Inertia::render('AboutUs');
+        $members = TeamMember::query()
+        ->get()
+        ->map(function ($member) {
+                return [
+                    'id' => $member->id,
+                    'name' => $member->name,
+                    'position' => $member->position,
+                    'image' => Storage::url($member->image),
+                    'alt' => $member->name. ' - ' . $member->position,
+                ];
+            });
+
+        return Inertia::render('AboutUs',
+    [
+        'teamMembers' => $members
+    ]);
     }
 }

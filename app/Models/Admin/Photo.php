@@ -14,26 +14,13 @@ class Photo extends Model
 
     protected $fillable = [
         'album_id',
-        'title',
-        'alt_text',
         'description',
-        'file_path',
-        'thumbnail_path',
-        'category',
-        'file_size',
-        'mime_type',
-        'width',
-        'height',
+        'image',
         'is_published',
-        'sort_order',
     ];
 
     protected $casts = [
         'is_published' => 'boolean',
-        'file_size' => 'integer',
-        'width' => 'integer',
-        'height' => 'integer',
-        'sort_order' => 'integer',
     ];
 
     protected $appends = [

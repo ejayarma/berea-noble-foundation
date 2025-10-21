@@ -9,8 +9,9 @@ import GalleryProper from './GalleryProper.vue';
 interface Props {
     albums: Array<any>;
     photos: Array<any>;
+    categories: Array<any>;
     initialCategory?: string;
-    selectedAlbumId?: string | null;
+    selectedAlbum?: string | null;
     view?: 'albums' | 'photos';
 }
 
@@ -25,8 +26,13 @@ const props = defineProps<Props>();
         <HeroSection image-url="@images/gallery-hero.jpeg" title="Gallery"
             :subtitle="'Capturing moments of hope \nlearning and community impact.'" />
 
-        <GalleryProper :albums="props.albums" :photos="props.photos" :initial-category="props.initialCategory"
-            :selected-album-id="props.selectedAlbumId" :view="props.view" />
+        <GalleryProper 
+            :albums="props.albums" 
+            :photos="props.photos" 
+            :categories="props.categories" 
+            :initial-category="props.initialCategory"
+            :selectedAlbumSlug="props.selectedAlbum"
+            :view="props.view" />
 
         <!-- Rest of your content -->
         <section class="py-16 lg:px-10 bg-gray-50">

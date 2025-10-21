@@ -1,119 +1,123 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Link } from '@inertiajs/vue3'
-import { BlogPost } from '@/types';
+import { Category, BlogPost } from '@/types';
 import { Button } from '@/components/ui/button';
 
 interface Props {
-    posts?: BlogPost[]
+    posts?: BlogPost[],
+    categories?: Category[],
 }
 
 const props = withDefaults(defineProps<Props>(), {
     posts: () => [
-        {
-            id: 1,
-            category: 'Education',
-            image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Expanding Our Mobile Library Program',
-            description: 'Learn how we\'re reaching more communities with our innovative mobile library initiative.',
-            slug: 'expanding-mobile-library-program'
-        },
-        {
-            id: 2,
-            category: 'Stories',
-            image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Success Stories from Our Community',
-            description: 'Inspiring stories of transformation and growth from the communities we serve.',
-            slug: 'success-stories-community'
-        },
-        {
-            id: 3,
-            category: 'Events',
-            image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Volunteer Spotlight: Making a Difference',
-            description: 'Meet the dedicated volunteers who make our mission possible every day.',
-            slug: 'volunteer-spotlight-making-difference'
-        },
-        {
-            id: 4,
-            category: 'Education',
-            image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Expanding Our Mobile Library Program',
-            description: 'Learn how we\'re reaching more communities with our innovative mobile library initiative.',
-            slug: 'expanding-mobile-library-program-2'
-        },
-        {
-            id: 5,
-            category: 'Stories',
-            image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Success Stories from Our Community',
-            description: 'Inspiring stories of transformation and growth from the communities we serve.',
-            slug: 'success-stories-community-2'
-        },
-        {
-            id: 6,
-            category: 'Events',
-            image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-            date: '2025-09-20',
-            title: 'Volunteer Spotlight: Making a Difference',
-            description: 'Meet the dedicated volunteers who make our mission possible every day.',
-            slug: 'volunteer-spotlight-making-difference-2'
-        },
-        {
-            id: 7,
-            category: 'Community',
-            image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80',
-            date: '2025-09-15',
-            title: 'Community Outreach Initiative Launch',
-            description: 'Launching our new community outreach program to serve more families in need.',
-            slug: 'community-outreach-initiative'
-        },
-        {
-            id: 8,
-            category: 'Medical Support',
-            image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-            date: '2025-09-10',
-            title: 'Mobile Health Clinic Expansion',
-            description: 'Bringing essential healthcare services to underserved rural communities.',
-            slug: 'mobile-health-clinic-expansion'
-        },
-        {
-            id: 9,
-            category: 'Education',
-            image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
-            date: '2025-09-05',
-            title: 'Scholarship Program Success',
-            description: 'Celebrating the achievements of our scholarship recipients and their bright futures.',
-            slug: 'scholarship-program-success'
-        }
-    ]
-})
+        // {
+        //     id: 1,
+        //     category: 'Education',
+        //     image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Expanding Our Mobile Library Program',
+        //     description: 'Learn how we\'re reaching more communities with our innovative mobile library initiative.',
+        //     slug: 'expanding-mobile-library-program'
+        // },
+        // {
+        //     id: 2,
+        //     category: 'Stories',
+        //     image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Success Stories from Our Community',
+        //     description: 'Inspiring stories of transformation and growth from the communities we serve.',
+        //     slug: 'success-stories-community'
+        // },
+        // {
+        //     id: 3,
+        //     category: 'Events',
+        //     image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Volunteer Spotlight: Making a Difference',
+        //     description: 'Meet the dedicated volunteers who make our mission possible every day.',
+        //     slug: 'volunteer-spotlight-making-difference'
+        // },
+        // {
+        //     id: 4,
+        //     category: 'Education',
+        //     image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Expanding Our Mobile Library Program',
+        //     description: 'Learn how we\'re reaching more communities with our innovative mobile library initiative.',
+        //     slug: 'expanding-mobile-library-program-2'
+        // },
+        // {
+        //     id: 5,
+        //     category: 'Stories',
+        //     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Success Stories from Our Community',
+        //     description: 'Inspiring stories of transformation and growth from the communities we serve.',
+        //     slug: 'success-stories-community-2'
+        // },
+        // {
+        //     id: 6,
+        //     category: 'Events',
+        //     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+        //     date: '2025-09-20',
+        //     title: 'Volunteer Spotlight: Making a Difference',
+        //     description: 'Meet the dedicated volunteers who make our mission possible every day.',
+        //     slug: 'volunteer-spotlight-making-difference-2'
+        // },
+        // {
+        //     id: 7,
+        //     category: 'Community',
+        //     image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80',
+        //     date: '2025-09-15',
+        //     title: 'Community Outreach Initiative Launch',
+        //     description: 'Launching our new community outreach program to serve more families in need.',
+        //     slug: 'community-outreach-initiative'
+        // },
+        // {
+        //     id: 8,
+        //     category: 'Medical Support',
+        //     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+        //     date: '2025-09-10',
+        //     title: 'Mobile Health Clinic Expansion',
+        //     description: 'Bringing essential healthcare services to underserved rural communities.',
+        //     slug: 'mobile-health-clinic-expansion'
+        // },
+        // {
+        //     id: 9,
+        //     category: 'Education',
+        //     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+        //     date: '2025-09-05',
+        //     title: 'Scholarship Program Success',
+        //     description: 'Celebrating the achievements of our scholarship recipients and their bright futures.',
+        //     slug: 'scholarship-program-success'
+        // }
+    ],
+
+    categories: () => []
+});
 
 
-type Category = 'All Categories' | 'Education' | 'Community' | 'Medical Support' | 'Stories' | 'Events'
+const resolvedCategories = computed(() => {
+    const allCat = {
+        id: -1,
+        name: "All Categories",
+        slug: "all"
+    };
 
-const activeCategory = ref<Category>('All Categories')
+    const result = [allCat, ...props.categories];
 
-const categories: Category[] = [
-    'All Categories',
-    'Education',
-    'Community',
-    'Medical Support',
-    'Stories',
-    'Events'
-]
+    return result;
+});
+
+const activeCategory = ref<Category>(resolvedCategories.value[0])
 
 const filteredPosts = computed(() => {
-    if (activeCategory.value === 'All Categories') {
+    if (activeCategory.value.slug === 'all') {
         return props.posts
     }
-    return props.posts.filter(post => post.category === activeCategory.value)
-})
+    return props.posts.filter(post => post.category === activeCategory.value.name)
+});
 
 const getCategoryColor = (category: string): string => {
     const colors: Record<string, string> = {
@@ -137,18 +141,18 @@ const formatDate = (date: string): string => {
 
 <template>
     <section class="py-12 lg:px-10 bg-gray-50" aria-labelledby="blog-heading">
-        <div class="container-primary">
+        <div v-if="posts.length" class="container-primary">
             <!-- Category Filter -->
             <nav class="flex flex-wrap gap-3 mb-12" role="tablist" aria-label="Blog categories">
-                <Button v-for="category in categories" :key="category" :class="[
+                <Button v-for="category in resolvedCategories" :key="category.id" :class="[
                     'px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200',
                     'focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
-                    activeCategory === category
+                    activeCategory.slug === category.slug
                         ? 'bg-orange-500 text-white shadow-md'
                         : 'bg-white text-gray-700 hover:bg-gray-100'
-                ]" :aria-selected="activeCategory === category" :aria-label="`Filter by ${category}`" role="tab"
-                    @click="activeCategory = category">
-                    {{ category }}
+                ]" :aria-selected="activeCategory.slug === category.slug" :aria-label="`Filter by ${category}`"
+                    role="tab" @click="activeCategory = category">
+                    {{ category.name }}
                 </Button>
             </nav>
 
@@ -204,6 +208,15 @@ const formatDate = (date: string): string => {
                         </Link>
                     </div>
                 </article>
+            </div>
+        </div>
+        <div v-else class="py-12 px-4 lg:px-10">
+            <div class="container-primary">
+                <img class="w-full max-w-md mx-auto bg-primary/30" src="/images/empty.png" alt="Placeholder">
+                <p
+                    class="mt-4 font-bold text-lg lg:text-xl xl:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-12 lg:mb-16 whitespace-pre-line text-center">
+                    No posts yet, please check later
+                </p>
             </div>
         </div>
     </section>

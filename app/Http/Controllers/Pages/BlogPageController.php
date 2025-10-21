@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\BlogPost;
+use App\Models\Admin\BlogPostCategory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
@@ -23,14 +24,17 @@ class BlogPageController extends Controller
                     'category' => $post->category->name,
                     'slug' => $post->slug,
                     'title' => $post->title,
-                    'image' => $post->image,
+                    'image' => Storage::url($post->image),
                     'description' => $post->description ?? '',
                     'date' => $post->created_at->toDateString(),
                 ];
             });
 
+        $categories = BlogPostCategory::query()->get(['id', 'name', 'slug']);
+        
         return Inertia::render('Blog', [
-            'posts' => $posts
+            'posts' => $posts,
+            'categories' => $categories,
         ]);
     }
 
@@ -42,6 +46,7 @@ class BlogPageController extends Controller
         $post = BlogPost::query()
             ->with('category', 'author')
             ->firstWhere('slug', $slug);
+
 
         return Inertia::render('BlogPost', [
             'post'   => [

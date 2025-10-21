@@ -6,10 +6,11 @@ import HeroSection from '@/pages/Partials/HeroSection.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import BlogProper from './BlogProper.vue';
 import NewsLetterSection from './Partials/NewsLetterSection.vue';
-import { BlogPost } from '@/types';
+import { Category, BlogPost } from '@/types';
 
 interface Props {
-    posts?: BlogPost[]
+    posts?: BlogPost[],
+    categories?: Category[],
 }
 
 const props = defineProps<Props>();
@@ -20,18 +21,14 @@ const props = defineProps<Props>();
 
 <template>
     <WebsiteLayout class="min-h-svh">
+
         <Head title="Blog" />
 
-        <HeroSection
-            title="Blog & Updates"
-            subtitle="Stories of impact, community and hope"
-        />
-        <BlogProper :posts="props.posts" />
+        <HeroSection title="Blog & Updates" subtitle="Stories of impact, community and hope" />
+        <BlogProper :posts="props.posts" :categories="props.categories" />
         <NewsLetterSection />
-        <MissionCtaSection
-            title="Be part of the story. Help us create more impact."
-            :subtitle="'Every donation, every volunteer hour, and every shared story brings us closer \nto transforming communities across Ghana. Join us in making a lasting difference.'"
-        />
+        <MissionCtaSection title="Be part of the story. Help us create more impact."
+            :subtitle="'Every donation, every volunteer hour, and every shared story brings us closer \nto transforming communities across Ghana. Join us in making a lasting difference.'" />
         <WebsiteFooter class="bg-brand/30" />
     </WebsiteLayout>
 </template>
