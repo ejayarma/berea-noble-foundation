@@ -14,7 +14,7 @@ const pageUrl = usePage().url;
 
 <template>
     <WebsiteLayout class="min-h-svh">
-        
+
         <div>
             <HeroSection
                 show-scroll-indicator
@@ -475,7 +475,7 @@ const pageUrl = usePage().url;
                                 </p>
 
                                 <!-- Read More Link -->
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group">
                                     Read More
                                     <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
@@ -483,7 +483,7 @@ const pageUrl = usePage().url;
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </article>
 
@@ -528,7 +528,7 @@ const pageUrl = usePage().url;
                                 </p>
 
                                 <!-- Read More Link -->
-                                <a href="#"
+                                <Link href="/about-us"
                                     class="inline-flex items-center text-brand font-semibold hover:text-orange-600 transition-colors duration-200 group">
                                     Read More
                                     <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
@@ -536,7 +536,7 @@ const pageUrl = usePage().url;
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7"></path>
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </article>
 

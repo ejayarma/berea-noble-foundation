@@ -185,7 +185,7 @@ const filteredPhotos = computed(() => {
     console.log('Active category:', activeCategory.value);
     console.log('categories:', resolvedCategories.value);
     console.log('photos:', photos);
-    
+
     return photos
 })
 
@@ -393,6 +393,7 @@ defineExpose({
             <!-- Empty State -->
             <div v-if="(currentView === 'albums' && filteredAlbums.length === 0) || (currentView === 'photos' && filteredPhotos.length === 0)"
                 class="text-center py-16" role="status" aria-live="polite">
+                <img class="w-full max-w-md mx-auto bg-primary/30" src="/images/empty.png" alt="Placeholder">
                 <div class="text-gray-400 text-lg mb-2">
                     {{ currentView === 'albums' ? 'No albums found' : 'No photos found' }}
                 </div>
