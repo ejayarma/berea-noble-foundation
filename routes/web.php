@@ -7,6 +7,7 @@ use App\Http\Controllers\Pages\DonatePageController;
 use App\Http\Controllers\Pages\GalleryPageController;
 use App\Http\Controllers\Pages\HomePageController;
 use App\Http\Controllers\Pages\ProgramsPageController;
+use App\Http\Controllers\BlogSubscriptionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,6 +22,7 @@ Route::get('/programs', ProgramsPageController::class)->name('programs');
 Route::get('/blog', [BlogPageController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogPageController::class, 'read'])->name('blog');
 Route::get('/donate', DonatePageController::class)->name('donate');
+Route::post('/newsletter/subscribe', [BlogSubscriptionController::class, 'store'])->name('blog.subscribe');
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
