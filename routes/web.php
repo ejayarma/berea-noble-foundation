@@ -20,7 +20,7 @@ Route::get('/gallery/albums/{album}', [GalleryPageController::class, 'album'])->
 
 Route::get('/programs', ProgramsPageController::class)->name('programs');
 Route::get('/blog', [BlogPageController::class, 'index'])->name('blog');
-Route::get('/blog/{slug}', [BlogPageController::class, 'read'])->name('blog');
+Route::get('/blog/{slug}', [BlogPageController::class, 'read'])->name('blog.read');
 Route::get('/donate', DonatePageController::class)->name('donate');
 Route::post('/newsletter/subscribe', [BlogSubscriptionController::class, 'store'])->name('blog.subscribe');
 
