@@ -87,7 +87,7 @@
                     "addressLocality": "Accra",
                     "addressRegion": "Greater Accra",
                     "addressCountry": "GH"
-                },
+                }
             }
             </script>
         @endverbatim
