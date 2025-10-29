@@ -78,10 +78,10 @@
             {
                 "@context": "https://schema.org",
                 "@type": "NGO",
-                "name": "{{ config('app.name') }}",
+                "name": "Berea Noble Foundation",
                 "description": "Empowering communities through education, healthcare, and support services",
-                "url": "{{ config('app.url') }}",
-                "logo": "{{ config('app.url') }}/images/logo-full.png",
+                "url": "https://bereanoblefoundation.com/",
+                "logo": "https://bereanoblefoundation.com/images/logo-full.png",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Accra",
