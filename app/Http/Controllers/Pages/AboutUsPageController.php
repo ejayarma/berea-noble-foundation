@@ -29,7 +29,7 @@ class AboutUsPageController extends Controller
 
         return Inertia::render('AboutUs',
     [
-        'teamMembers' => $members
+        'teamMembers' => count($members) ? $members : null
     ]);
     }
 }

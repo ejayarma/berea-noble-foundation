@@ -42,7 +42,7 @@
         <link href="https://fonts.bunny.net/css?family=montserrat:400,500,600" rel="stylesheet" />
 
         <!-- Primary Meta Tags -->
-        <meta name="title" content="Home | {{ config('app.name') }}} - Empowering Communities Through Education & Care" />
+        <meta name="title" content="Home | {{ config('app.name') }} - Empowering Communities Through Education & Care" />
         <meta name="description" content="Berea Noble Foundation brings knowledge and hope to underserved communities through mobile libraries, educational programs, healthcare for the elderly, and support services for children." />
         <meta name="keywords" content="mobile library, education foundation, community development, children support, elderly care, book distribution, Ghana charity, nonprofit organization, community book clubs, educational programs" />
         <meta name="robots" content="index, follow" />
@@ -60,7 +60,7 @@
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" :content="pageUrl" />
+        <meta property="twitter:url" content="{{ config('app.url') }}" />
         <meta property="twitter:title" content="Berea Noble Foundation - Empowering Communities Through Education & Care" />
         <meta property="twitter:description" content="Creating lasting change through education, healthcare, and support services." />
         <meta property="twitter:image" content="{{ config('app.url') }}/images/ogt.png"  />

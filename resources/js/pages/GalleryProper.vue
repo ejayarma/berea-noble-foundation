@@ -198,7 +198,7 @@ const openAlbum = (album: Album) => {
     selectedAlbum.value = album
     currentView.value = 'photos'
     // Optional: Update URL without reload
-    // router.visit(`/gallery?album=${album.id}`, { preserveState: true })
+    // router.visit(`/gallery?album=${album.slug}&category=${activeCategory.value}`, { preserveState: true })
 }
 
 const backToAlbums = () => {
@@ -206,6 +206,17 @@ const backToAlbums = () => {
     currentView.value = 'albums'
     // Optional: Update URL
     // router.visit('/gallery', { preserveState: true })
+}
+
+const chooseCategory = (catSlug: string) => {
+    activeCategory.value = catSlug;
+    currentView.value = 'albums'
+    // Optional: Update URL
+    // if (selectedAlbum.value) {
+    //     router.visit(`/gallery?category=${catSlug}&album=${selectedAlbum.value?.slug}`, { preserveState: true })
+    // } else {
+    //     router.visit(`/gallery?category=${catSlug}`, { preserveState: true })
+    // }
 }
 
 const openLightbox = (index: number) => {
@@ -299,7 +310,7 @@ defineExpose({
 
             <!-- Filter Tabs -->
             <div class="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
-                <Button v-for="category in resolvedCategories" :key="category.id" @click="activeCategory = category.slug"
+                <Button v-for="category in resolvedCategories" :key="category.id" @click="chooseCategory(category.slug)"
                     :class="[
                         'px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2',
                         activeCategory === category.slug

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Album;
 use App\Models\Admin\GalleryCategory;
+use App\Models\Admin\Photo;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -44,7 +45,7 @@ class GalleryPageController extends Controller
                     'title' => $album->title,
                     'description' => $album->description,
                     'slug' => $album->slug,
-                    'cover_image' => Storage::url($album->cover_image_url),
+                    'cover_image' => $album->cover_image_url,
                     'photo_count' => $album->published_photos_count,
                     'category' => $album->category->slug,
                     'created_at' => $album->created_at->toDateString(),
@@ -68,6 +69,22 @@ class GalleryPageController extends Controller
                         'alt' => $photo->description,
                         'title' => $photo->description,
                         'category' => $album->category->slug,
+                        'album_id' => $photo->album_id,
+                    ];
+                });
+        } else {
+            $photos = Photo::query()->published()
+                ->get()
+                ->filter(function ($photo) use ($category) {
+                    return $category === 'all' || $category === $photo->album->category->slug;
+                })
+                ->map(function ($photo) {
+                    return [
+                        'id' => $photo->id,
+                        'src' => $photo->image,
+                        'alt' => $photo->description,
+                        'title' => $photo->description,
+                        'category' => $photo->album->category->slug,
                         'album_id' => $photo->album_id,
                     ];
                 });

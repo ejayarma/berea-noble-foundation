@@ -15,6 +15,9 @@ class DonationsChart extends ChartWidget
 
     protected ?string $heading = 'Donations Chart';
 
+    // protected string $color = 'danger';
+
+
     protected function getData(): array
     {
         $activeFilter = $this->filter;
@@ -35,8 +38,8 @@ class DonationsChart extends ChartWidget
                 [
                     'label' => 'Blog posts created',
                     'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                    'backgroundColor' => '#36A2EB',
-                    'borderColor' => '#9BD0F5',
+                    'backgroundColor' => '#f56600',
+                    // 'borderColor' => '#9BD0F5',
                 ],
             ],
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

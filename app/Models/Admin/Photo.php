@@ -78,19 +78,14 @@ class Photo extends Model
 
     public function scopeOrdered($query)
     {
-        return $query->orderBy('sort_order')->orderBy('created_at', 'desc');
+        return $query->orderBy('created_at', 'desc');
     }
 
     // Events
     protected static function booted(): void
     {
-        static::created(function (Photo $photo) {
-            $photo->album->updatePhotoCount();
-            $photo->album->updateCoverImage();
-        });
-
         static::deleted(function (Photo $photo) {
-            $photo->album->updatePhotoCount();
+            Storage::disk('public')->delete($photo->image);
         });
     }
 }

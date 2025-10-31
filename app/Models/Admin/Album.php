@@ -77,11 +77,19 @@ class Album extends Model
         if ($category === 'all') {
             return $query;
         }
-        return $query->where('category', $category);
+        return $query->whereRelation('category', 'slug', $category);
     }
 
     public function scopeOrdered($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    // Events
+    protected static function booted(): void
+    {
+        static::deleted(function (Album $album) {
+            Storage::disk('public')->delete($album->cover_image);
+        });
     }
 }

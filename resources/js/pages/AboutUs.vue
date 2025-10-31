@@ -6,6 +6,7 @@ import ImpactSection from './Partials/ImpactSection.vue';
 import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import { TeamMember } from '@/types';
+import { onMounted } from 'vue';
 const pageUrl = usePage().url;
 
 // Team member interface
@@ -16,7 +17,7 @@ interface Props {
     teamMembers?: TeamMember[];
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     teamMembers: () => [
         {
             id: 1,
@@ -50,6 +51,11 @@ withDefaults(defineProps<Props>(), {
         },
     ]
 });
+
+onMounted(() => {
+    console.log("TEAM MEMBERS:", props.teamMembers);
+
+})
 
 
 </script>
@@ -428,12 +434,12 @@ withDefaults(defineProps<Props>(), {
                 <!-- Team Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 text-nowrap content-stretch">
                     <!-- Member -->
-                    <div v-for="member in teamMembers" :key="member.id" class="team-member group">
+                    <div v-for="member in props.teamMembers" :key="member.id" class="team-member group">
                         <div
                             class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
                             <!-- Image Container -->
                             <div class="aspect-[4/5] overflow-hidden">
-                                <img :src="member.image" :alt="member.alt"
+                                <img :src="member.image || 'https://placeholder.pics/svg/400x500/DEDEDE/555555/%20'" :alt="member.alt"
                                     class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy" />
                             </div>

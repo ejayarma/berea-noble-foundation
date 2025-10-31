@@ -41,10 +41,10 @@ class StatsOverview extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('info'),
 
-            // Stat::make('Average time on page', '3:12')
-            //     ->description('3% increase')
-            //     ->descriptionIcon('heroicon-m-arrow-trending-up')
-            //     ->color('success'),
+            Stat::make('News Subscription', 0)
+                // ->description('3% increase')
+                ->descriptionIcon('heroicon-m-arrow-trending-up')
+                ->color('success'),
         ];
     }
 }
