@@ -7,6 +7,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditGalleryAlbum extends EditRecord
 {
@@ -19,5 +20,11 @@ class EditGalleryAlbum extends EditRecord
             ForceDeleteAction::make(),
             RestoreAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['slug'] = Str::slug($data['title']);
+        return $data;
     }
 }

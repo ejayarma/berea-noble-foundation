@@ -17,7 +17,7 @@ class DonationsChart extends ChartWidget
 
     public function getHeading(): string | Htmlable | null
     {
-        return 'Donations received ' . $this->filter;
+        return 'Donations received in ' . ($this->filter ?: date('Y'));
     }
 
 
@@ -28,7 +28,9 @@ class DonationsChart extends ChartWidget
         Log::info('Active filter', [$activeFilter]);
 
         $data = Trend::query(
-            DonationTransaction::query()->successful()
+            DonationTransaction::query()
+                ->successful()
+                ->whereYear('created_at', $activeFilter ?: date('Y'))
         )
             ->between(
                 start: now()->startOfYear(),
@@ -54,10 +56,11 @@ class DonationsChart extends ChartWidget
     protected function getFilters(): ?array
     {
         return [
-            'today' => 'Today',
-            'week' => 'Last week',
-            'month' => 'Last month',
-            'year' => 'This year',
+            date('Y') => 'This year',
+            date('Y') - 1 => date('Y') - 1,
+            date('Y') - 2 => date('Y') - 2,
+            date('Y') - 3 => date('Y') - 3,
+            date('Y') - 4 => date('Y') - 4,
         ];
     }
 

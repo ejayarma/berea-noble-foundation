@@ -8,6 +8,7 @@ use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditBlogPost extends EditRecord
 {
@@ -21,5 +22,11 @@ class EditBlogPost extends EditRecord
             ForceDeleteAction::make(),
             RestoreAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['slug'] = Str::slug($data['title']);
+        return $data;
     }
 }
