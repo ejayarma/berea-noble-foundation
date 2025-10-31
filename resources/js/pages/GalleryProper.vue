@@ -2,7 +2,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
 import { Button } from '@/components/ui/button'
-import { router } from '@inertiajs/vue3'
+// import { router } from '@inertiajs/vue3'
 import { Album, Category, Photo } from '@/types'
 
 // Props

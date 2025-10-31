@@ -5,15 +5,16 @@ import WebsiteFooter from '@/pages/Partials/WebsiteFooter.vue';
 import HeroSection from '@/pages/Partials/HeroSection.vue';
 import MissionCtaSection from './Partials/MissionCtaSection.vue';
 import GalleryProper from './GalleryProper.vue';
+import { Album, Photo } from '@/types';
 
 const pageUrl = usePage().url;
 
 interface Props {
-    albums: Array<any>;
-    photos: Array<any>;
-    categories: Array<any>;
-    initialCategory?: string;
-    selectedAlbum?: string | null;
+    photos?: Photo[]
+    albums?: Album[]
+    categories: Array<any>
+    initialCategory?: string
+    selectedAlbum?: string | null
     view?: 'albums' | 'photos';
 }
 

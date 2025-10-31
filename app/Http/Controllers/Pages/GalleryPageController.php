@@ -65,7 +65,7 @@ class GalleryPageController extends Controller
                 ->map(function ($photo) use ($album) {
                     return [
                         'id' => $photo->id,
-                        'src' => $photo->image,
+                        'src' => Storage::url($photo->image),
                         'alt' => $photo->description,
                         'title' => $photo->description,
                         'category' => $album->category->slug,
@@ -81,7 +81,7 @@ class GalleryPageController extends Controller
                 ->map(function ($photo) {
                     return [
                         'id' => $photo->id,
-                        'src' => $photo->image,
+                        'src' => Storage::url($photo->image),
                         'alt' => $photo->description,
                         'title' => $photo->description,
                         'category' => $photo->album->category->slug,
