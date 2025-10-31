@@ -6,6 +6,7 @@ use App\Models\Admin\DonationTransaction;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Log;
 
 class DonationsChart extends ChartWidget
@@ -13,9 +14,11 @@ class DonationsChart extends ChartWidget
     protected static ?int $sort = 10;
     protected int | string | array $columnSpan = 2;
 
-    protected ?string $heading = 'Donations Chart';
 
-    // protected string $color = 'danger';
+    public function getHeading(): string | Htmlable | null
+    {
+        return 'Donations received ' . $this->filter;
+    }
 
 
     protected function getData(): array
@@ -24,21 +27,23 @@ class DonationsChart extends ChartWidget
 
         Log::info('Active filter', [$activeFilter]);
 
-        $data = Trend::model(DonationTransaction::class)
+        $data = Trend::query(
+            DonationTransaction::query()->successful()
+        )
             ->between(
                 start: now()->startOfYear(),
                 end: now()->endOfYear(),
             )
             ->perMonth()
-            ->count();
+            ->sum('amount');
 
 
         return [
             'datasets' => [
                 [
-                    'label' => 'Blog posts created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                    'backgroundColor' => '#f56600',
+                    'label' => 'Donations received',
+                    // 'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
+                    'data' => $data->map(fn(TrendValue $value) => round($value->aggregate / 100, 2)),
                     // 'borderColor' => '#9BD0F5',
                 ],
             ],

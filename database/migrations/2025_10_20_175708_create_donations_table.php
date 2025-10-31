@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('amount');
-            $table->string('frequency');
-            $table->string('email')->nullable();
+            $table->unsignedInteger('amount');
+            $table->string('frequency', 20); // onetime, monthly
+            $table->string('email');
             $table->string('phone')->nullable();
             $table->softDeletes();
         });

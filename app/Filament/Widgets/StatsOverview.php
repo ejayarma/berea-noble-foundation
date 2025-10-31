@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Admin\BlogSubscription;
 use App\Models\Admin\ContactForm;
 use App\Models\Admin\DonationTransaction;
 use Filament\Widgets\StatsOverviewWidget;
@@ -27,7 +28,12 @@ class StatsOverview extends StatsOverviewWidget
         });
 
         $successfulDonates = Cache::remember(DonationTransaction::COUNT_CACHE_KEY, 60, function () {
-            $count = DonationTransaction::query()->successful()->count();
+            $amount = DonationTransaction::query()->successful()->sum('amount');
+            return Number::abbreviate(round($amount, 2) / 100);
+        });
+
+        $blogSubscriptions = Cache::remember(BlogSubscription::COUNT_CACHE_KEY, 60, function () {
+            $count = BlogSubscription::query()->count();
             return Number::abbreviate($count);
         });
 
@@ -41,7 +47,7 @@ class StatsOverview extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
                 ->color('info'),
 
-            Stat::make('News Subscription', 0)
+            Stat::make('Blog Subscription', $blogSubscriptions)
                 // ->description('3% increase')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('success'),

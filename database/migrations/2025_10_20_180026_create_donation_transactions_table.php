@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('donation_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('donation_id')->constrained('donations');
-            $table->string('transaction_id');
+            $table->unsignedInteger('amount');
+            $table->string('transaction_reference');
             $table->string('transaction_status', 20); // PENDING, SUCCESS, FAILED
             $table->timestamps();
             $table->softDeletes();

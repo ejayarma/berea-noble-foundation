@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('donation_id')->constrained('donations');
             $table->string('subscription_status', 20); // ACTIVE, CANCELLED
+            $table->text('subscription_details');
             $table->timestamps();
             $table->softDeletes();
         });
