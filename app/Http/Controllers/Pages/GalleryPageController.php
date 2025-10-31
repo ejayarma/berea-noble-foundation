@@ -69,7 +69,7 @@ class GalleryPageController extends Controller
                         'alt' => $photo->description,
                         'title' => $photo->description,
                         'category' => $album->category->slug,
-                        'album_id' => $photo->album_id,
+                        'album_id' => (int) $photo->album_id,
                     ];
                 });
         } else {
@@ -85,7 +85,7 @@ class GalleryPageController extends Controller
                         'alt' => $photo->description,
                         'title' => $photo->description,
                         'category' => $photo->album->category->slug,
-                        'album_id' => $photo->album_id,
+                        'album_id' => (int) $photo->album_id,
                     ];
                 });
         }
